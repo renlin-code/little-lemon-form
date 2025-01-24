@@ -1,0 +1,70 @@
+/* RESET */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  text-decoration: none;
+  background: none;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6, button {
+  overflow-wrap: break-word;
+}
+
+p {
+  text-wrap: pretty;
+}
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+#root, #__next {
+  isolation: isolate;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+
+/* VARS */
+html {
+  --color-gray: #EDEFEE;
+  --color-black: #000000;
+  --color-white: #FFFFFF;
+  --color-green: #495E57;
+  --color-yellow: #F4CE14;
+  --color-red: #EE9972;
+  --color-beige: #FBDABB;
+  --radius-sm: 8px;
+  --radius-lg: 16px;
+}
+
+/* GLOBAL */
+.container {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+body, input, button {
+  font-family: 'Karla', sans-serif;
+  font-size: 17px;
+  color: var(--color-black);
+}

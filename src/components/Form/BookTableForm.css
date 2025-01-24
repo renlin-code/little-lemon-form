@@ -1,0 +1,39 @@
+.form {
+    min-width: 300px;
+}
+
+@media screen and (min-width: 700px) {
+    .form {
+        width: 500px;
+    }
+    }
+
+.form__title {
+    font-family: "Markazi Text", sans-serif;
+    font-weight: 300;
+    font-size: 40px;
+    line-height: 48px;
+    margin-bottom: 30px;
+}
+
+.form__groups {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.form__group label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.form__group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--color-green);
+    border-radius: var(--radius-sm);
+    outline: none;
+}

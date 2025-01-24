@@ -1,0 +1,10 @@
+.button {
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    background: var(--color-yellow);
+}
+
+.button--full-width {
+    width: 100%;
+}
