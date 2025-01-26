@@ -1,7 +1,7 @@
 import "./BookTableForm.css";
 
-import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import React, { useId } from "react";
+import { useFormik } from "formik";
 import * as Yup from "yup";
 import Button from "../Button/Button";
 
@@ -23,79 +23,71 @@ const validationSchema = Yup.object().shape({
 const errorTextStyles = {
   color: "#EE9972",
   marginTop: "10px",
-  display: "inline-block"
-}
+  display: "inline-block",
+};
 
-const DateForm = () => {
+const INITIAL_VALUES = {
+  date: "",
+  quantity: 1,
+  name: "",
+};
+
+const BookTableForm = ({ onSubmit }) => {
+  const dateId = useId();
+  const quantityId = useId();
+  const nameId = useId();
+
+  const formik = useFormik({
+    initialValues: INITIAL_VALUES,
+    validationSchema,
+    onSubmit: (values) => {
+      onSubmit(values);
+    },
+  });
+
   return (
-    <Formik
-      initialValues={{
-        date: "",
-        quantity: 1,
-        name: "",
-      }}
-      validationSchema={validationSchema}
-      onSubmit={(values) => {
-        console.log("SUBMITED", values);
-      }}
-    >
-      {({ setFieldValue }) => (
-        <Form>
-          <div className="form">
-            <h2 className="form__title">Table reservation</h2>
-            <div className="form__groups">
-              <div className="form__group">
-                <label htmlFor="date">Date:</label>
-                <Field
-                  type="date"
-                  name="date"
-                  onChange={(event) => {
-                    setFieldValue("date", event.currentTarget.value);
-                  }}
-                />
-                <ErrorMessage
-                  name="date"
-                  component="span"
-                  style={errorTextStyles}
-                />
-              </div>
-              <div className="form__group">
-                <label htmlFor="quantity">Number of guests:</label>
-                <Field
-                  type="number"
-                  name="quantity"
-                  onChange={(event) => {
-                    setFieldValue("quantity", event.currentTarget.value);
-                  }}
-                />
-                <ErrorMessage
-                  name="quantity"
-                  component="span"
-                  style={errorTextStyles}
-                />
-              </div>
-              <div className="form__group">
-                <label htmlFor="name">Your name:</label>
-                <Field
-                  type="text"
-                  name="name"
-                  onChange={(event) => {
-                    setFieldValue("name", event.currentTarget.value);
-                  }}
-                />
-                <ErrorMessage
-                  name="name"
-                  component="span"
-                  style={errorTextStyles}
-                />
-              </div>
-            </div>
-            <Button type="submit" fullWidth>Send</Button>
-          </div>
-        </Form>
-      )}
-    </Formik>
+    <form className="form" onSubmit={formik.handleSubmit}>
+      <h2 className="form__title">Table reservation</h2>
+      <div className="form__groups">
+        <div className="form__group">
+          <label htmlFor={dateId}>Date:</label>
+          <input
+            id={dateId}
+            type="date"
+            name="date"
+            onChange={formik.handleChange}
+            value={formik.values.date}
+          />
+          {formik.errors.date ? <span style={errorTextStyles}>{formik.errors.date}</span> : null}
+        </div>
+        <div className="form__group">
+          <label htmlFor={quantityId}>Number of guests:</label>
+          <input
+            id={quantityId}
+            type="number"
+            name="quantity"
+            onChange={formik.handleChange}
+            value={formik.values.quantity}
+          />
+          {formik.errors.quantity ? <span style={errorTextStyles}>{formik.errors.quantity}</span> : null}
+        </div>
+        <div className="form__group">
+          <label htmlFor={nameId}>Your name:</label>
+          <input
+            id={nameId}
+            type="text"
+            name="name"
+            onChange={formik.handleChange}
+            value={formik.values.name}
+          />
+          {formik.errors.name ? <span style={errorTextStyles}>{formik.errors.name}</span> : null}
+        </div>
+      </div>
+      <Button type="submit" fullWidth>
+        Send
+      </Button>
+    </form>
   );
 };
 
-export default DateForm;
+export default BookTableForm;

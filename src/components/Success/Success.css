@@ -1,0 +1,14 @@
+.success {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.success__title {
+    font-family: "Markazi Text", sans-serif;
+    font-size: 40px;
+    line-height: 36px;
+    font-weight: 400;
+    text-align: center;
+}
